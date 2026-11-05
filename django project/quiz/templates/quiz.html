@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Quiz Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 750px;
+            background: white;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #cccccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        .question {
+            background: #f8fafc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0;
+            cursor: pointer;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 30px;
+            border-radius: 7px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .submit {
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Online Quiz Application</h1>
+
+    <p>Welcome! Answer all five questions.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for q in questions %}
+
+        <div class="question">
+
+            <h3>{{ q.question }}</h3>
+
+            {% for option in q.options %}
+
+            <label>
+                <input
+                    type="radio"
+                    name="q{{ forloop.parentloop.counter0 }}"
+                    value="{{ option }}"
+                    required
+                >
+                {{ option }}
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+        <div class="submit">
+            <button type="submit">Submit Quiz</button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+C:\Users\Vishal\Desktop\django project
